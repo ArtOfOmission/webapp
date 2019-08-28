@@ -1,11 +1,10 @@
-
 module.exports = {
-    // cli3 代理是从指定的target后面开始匹配的，不是任意位置；配置pathRewrite可以做替换
     devServer: {
         proxy: {
             '/api': {
-                target: 'https://localhost:6001',
-                changeOrigin: true,
+                target: 'https://localhost:6001', // target host
+                changeOrigin: true, // needed for virtual hosted sites
+                ws: true, // proxy websockets
                 pathRewrite: {}
             }
         }
