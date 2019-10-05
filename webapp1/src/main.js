@@ -12,8 +12,7 @@ new Vue({
 
 router.beforeEach((to, from, next) => {  
 
-  console.log("to:" + to.fullPath);
-  console.log("from:" + from.fullPath); 
+  console.log('from:'+from.fullPath);
   next();//跳转
 
 });
