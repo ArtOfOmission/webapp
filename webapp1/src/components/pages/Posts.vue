@@ -1,4 +1,3 @@
-/* eslint-disable */
 <template>    
     <div class="s-margin"> 
         <h2>博客页</h2> 
@@ -7,18 +6,22 @@
                 :data="tableData"
                 style="width: 100%">
                 <el-table-column
-                    prop="date"
-                    label="日期"
+                    prop="title"
+                    label="标题"
                     width="180">
                 </el-table-column>
                 <el-table-column
-                    prop="name"
-                    label="姓名"
-                    width="180">
+                    prop="body"
+                    label="内容"
+                    width="500">
                 </el-table-column>
                 <el-table-column
-                    prop="address"
-                    label="地址">
+                    prop="author"
+                    label="作者">
+                </el-table-column>
+                <el-table-column
+                    prop="updateTime"
+                    label="更新时间">
                 </el-table-column>
                 </el-table>
             </template>
@@ -26,41 +29,23 @@
     </div>
 </template>
 <script>
-
+/* eslint-disable */
 export default {
     name:'Posts',
     data(){
       return {
-          tableData: [{
-            date: '2016-05-02',
-            name: '王小虎',
-            address: '上海市普陀区金沙江路 1518 弄'
-          }, {
-            date: '2016-05-04',
-            name: '王小虎',
-            address: '上海市普陀区金沙江路 1517 弄'
-          }, {
-            date: '2016-05-01',
-            name: '王小虎',
-            address: '上海市普陀区金沙江路 1519 弄'
-          }, {
-            date: '2016-05-03',
-            name: '王小虎',
-            address: '上海市普陀区金沙江路 1516 弄'
-          }]
+          tableData:null
         }
     },
     mounted(){
 
-        console.log('请求');
-         this.$axios.get('/api/Posts?pageindex=1&pagesize=5')
+        var $this=this;
+        $this.$axios.get('/api/Posts?pageindex=1&pagesize=5')
         .then(function (response) {
-            console.log(response);
+            $this.tableData=response.data;
         })
         .catch(function (error) {
-            debugger
-            console.log('请求失败');
-        console.log(error);
+            console.log(error);
         });
 
     }
